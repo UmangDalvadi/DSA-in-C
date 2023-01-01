@@ -79,7 +79,7 @@ int pm(char *exp)
 
 int main()
 {
-    char *exp = "()";
+    char *exp = "())";
     if (pm(exp))
     {
         printf("matched\n");

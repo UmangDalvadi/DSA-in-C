@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-struct node
+struct stack
 {
     int size;
     int top;
     char *arr;
 };
 
-void push(struct node *n, char strg[])
+void push(struct stack *n, char strg[])
 {
     for (int i = 0; i < strlen(strg); i++)
     {
@@ -17,7 +17,7 @@ void push(struct node *n, char strg[])
     }
 }
 
-void pop(struct node *n, char strg[])
+void pop(struct stack *n, char strg[])
 {
     printf("\nReversed String : ");
     for (int i = n->top; i != -1; i--)
@@ -29,11 +29,11 @@ void pop(struct node *n, char strg[])
 int main()
 {
     printf("\nEnter String : ");
-    char strg[20];
+    char strg[50];
     // scanf("%s", strg);
     gets(strg);
 
-    struct node *n = (struct node *)malloc(sizeof(struct node));
+    struct stack *n = (struct stack *)malloc(sizeof(struct stack));
     n->size = strlen(strg);
     n->top = -1;
     n->arr = (char *)malloc(n->size * sizeof(char));
