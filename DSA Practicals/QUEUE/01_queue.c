@@ -1,147 +1,120 @@
-// 1. Write a program to create queue and perform operation like insert, delete and display
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#define SIZE 5
+int q[SIZE];
+int r = -1;
+int f = -1;
 
-struct queue
+void insert()
 {
-    int size;
-    int f;
-    int r;
-    int *arr;
-};
-
-int isempty(struct queue *q)
-{
-    if (q->f == q->r||q->f=-1)
+    int num;
+    if (r == SIZE - 1)
     {
-        return 1;
-    }
-    return 0;
-}
-int isfull(struct queue *q)
-{
-    if (q->r  == q->size-1)
-    {
-        return 1;
-    }
-    return 0;
-}
-
-void inQ(struct queue *q, int val)
-{
-    if (isfull(q))
-    {
-        printf("\n------------Queue Overflow-------------\n");
+        printf("\nQueue Is Full..\n");
     }
     else
     {
-        q->r = q->r + 1;
-        q->arr[q->r] = val;
-        // printf("inQ : %d\n", val);
+        printf("\nEnter Number : ");
+        scanf("%d", &num);
+        r++;
+        q[r] = num;
+        if (f == -1)
+        {
+            f++;
+        }
     }
 }
-int deQ(struct queue *q)
+void display()
 {
-    int val = -1;
-   
-    if (isempty(q))
+    for (int i = f; i <= r; i++)
     {
-        printf("Q Underflow\n");
-        return -1;
+        printf(" %d", q[i]);
+    }
+}
+void deleteQ()
+{
+    if (f == -1)
+    {
+        printf("\nQueue Is Empty..\n");
     }
     else
     {
-        val = q->arr[q->f];
-        q->f = q->f + 1;
-        return val;
+        printf("\n%d Deleted", q[f]);
+        if (f == r)
+        {
+            f = -1;
+            r = -1;
+        }
+        else
+        {
+            f++;
+        }
     }
 }
-
-void insert(struct queue *q)
+void search()
 {
-    printf("How many elements you want to add : ");
-    int x;
-    scanf("%d", &x);
-    for (int i = 0; i < x; i++)
+    int searchNum, counter = 0, isFund = 0;
+    printf("\nName:JATIN RATHOD");
+    printf("\nEnrollment No: 210210116017");
+    printf("\nEnter number which you want search : ");
+    scanf("%d", &searchNum);
+    for (int i = r; i <= f; i++)
     {
-
-        printf("Enter value %d : ", i);
-        int val;
-        scanf("%d", &val);
-        inQ(q, val);
+        counter++;
+        if (searchNum == q[i])
+        {
+            isFund = 1;
+            printf("\n%d Is Found at %d location", q[i], counter);
+            break;
+        }
+    }
+    if (!isFund) // 0 ---> (!0=1)
+    {
+        printf("%d is not found", searchNum);
     }
 }
-
-void display(struct queue *q)
-{
-    for (int i = q->f + 1; i <= q->r; i++)
-    {
-        printf("%d \n", q->arr[i]);
-    }
-}
-
 int main()
 {
-    printf("\nEnter size of QUEUE : ");
-    int x;
-    scanf("%d", &x);
-    // printf("\n");
-
-    struct queue *q;
-    q->size = x;
-    q->f = -1;
-    q->r = -1;
-    q->arr = (int *)malloc(q->size * sizeof(int));
-    int val;
-    do
+    printf("\nName : Umang Dalvadi\n");
+    printf("Enrollmrnt No. : 210210116020\n\n");
+    int choice;
+    while (1)
     {
-        printf("\n===========================================================\n\n");
         printf("1. INSERT\n");
-        printf("2. DELETE\n");
-        printf("3. DISPLAY\n");
-        printf("4. EXIT\n");
-        printf("\nEnter your choice : ");
-        scanf("%d", &val);
+        printf("2. DISPLAY\n");
+        printf("3. DELETE\n");
+        printf("4. INSERT\n");
+        printf("5. SEARCH\n");
+        printf("0. EXIT\n");
         printf("\n");
 
-        switch (val)
+        scanf("%d", &choice);
+        printf("\n");
+        switch (choice)
         {
+        case 0:
+            exit(0);
         case 1:
-            insert(q);
+            insert();
+            printf("\n");
             break;
         case 2:
-            printf("deQ : %d\n", deQ(q));
+            display();
+            printf("\n");
             break;
         case 3:
-            display(q);
+            deleteQ();
+            printf("\n");
+            break;
+        case 4:
+            search();
+            printf("\n");
             break;
 
         default:
-            break;
+            printf("\nYou Enter Worng Choice\n");
         }
-
-    } while (val != 4);
-
-    // inQ(q, 5);
-    // inQ(q, 6);
-    // inQ(q, 7);
-    // inQ(q, 8);
-    // inQ(q, 9);
-    // // inQ(q, 10);
-
-    // printf("deQ : %d\n", deQ(q));
-    // inQ(q, 10);
-    // inQ(q, 11);
-    // // inQ(q,12);
-    // printf("deQ : %d\n", deQ(q));
-    // printf("deQ : %d\n", deQ(q));
-    // printf("deQ : %d\n", deQ(q));
-    // printf("deQ : %d\n", deQ(q));
-    // printf("deQ : %d\n", deQ(q));
-    // printf("deQ : %d\n", deQ(q));
-    // printf("deQ : %d\n", deQ(q));
-    // printf("deQ : %d\n", deQ(q));
-
+        printf("===================================================\n");
+    }
     return 0;
 }
