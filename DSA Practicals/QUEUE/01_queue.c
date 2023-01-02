@@ -1,164 +1,147 @@
-// WRITE A PROGRAM TO CREATE A QUEUE AND PERFORM
-
-// FOLLOWING OPERATION ON QUEUE
-// ===========================================
-// INSERT AN ELEMENT
-
-// DELETE AN ELEMENT
-
-// DISPLAY ALL ELEMENTS IN QUEUE
-// =========================================
+// 1. Write a program to create queue and perform operation like insert, delete and display
 #include <stdio.h>
-
-#include <conio.h>
-
 #include <stdlib.h>
+#include <string.h>
 
-int *queue, choice, front, rear, x, i, n;
+struct queue
+{
+    int size;
+    int f;
+    int r;
+    int *arr;
+};
 
-void insert();
+int isempty(struct queue *q)
+{
+    if (q->f == q->r||q->f=-1)
+    {
+        return 1;
+    }
+    return 0;
+}
+int isfull(struct queue *q)
+{
+    if (q->r  == q->size-1)
+    {
+        return 1;
+    }
+    return 0;
+}
 
-void del();
+void inQ(struct queue *q, int val)
+{
+    if (isfull(q))
+    {
+        printf("\n------------Queue Overflow-------------\n");
+    }
+    else
+    {
+        q->r = q->r + 1;
+        q->arr[q->r] = val;
+        // printf("inQ : %d\n", val);
+    }
+}
+int deQ(struct queue *q)
+{
+    int val = -1;
+   
+    if (isempty(q))
+    {
+        printf("Q Underflow\n");
+        return -1;
+    }
+    else
+    {
+        val = q->arr[q->f];
+        q->f = q->f + 1;
+        return val;
+    }
+}
 
-void display();
+void insert(struct queue *q)
+{
+    printf("How many elements you want to add : ");
+    int x;
+    scanf("%d", &x);
+    for (int i = 0; i < x; i++)
+    {
+
+        printf("Enter value %d : ", i);
+        int val;
+        scanf("%d", &val);
+        inQ(q, val);
+    }
+}
+
+void display(struct queue *q)
+{
+    for (int i = q->f + 1; i <= q->r; i++)
+    {
+        printf("%d \n", q->arr[i]);
+    }
+}
 
 int main()
 {
+    printf("\nEnter size of QUEUE : ");
+    int x;
+    scanf("%d", &x);
+    // printf("\n");
 
-    front = rear = -1;
-
-    printf("Enter the size of the Queue: ");
-
-    scanf("%d", &n);
-
-    queue = (int *)malloc(n * sizeof(int));
-
-    if (queue == NULL)
-    {
-        printf("Memory not Allocated...\n");
-
-        getch();
-
-        exit(0);
-    }
-
-    else
-    {
-        printf("1.INSERT \n");
-
-        printf("2.DELETE \n");
-
-        printf("3.DISPLAY \n");
-
-        printf("4.EXIT \n");
-    }
-
+    struct queue *q;
+    q->size = x;
+    q->f = -1;
+    q->r = -1;
+    q->arr = (int *)malloc(q->size * sizeof(int));
+    int val;
     do
     {
-        printf("\nEnter your Choice: ");
-        scanf("%d", &choice);
-        switch (choice)
+        printf("\n===========================================================\n\n");
+        printf("1. INSERT\n");
+        printf("2. DELETE\n");
+        printf("3. DISPLAY\n");
+        printf("4. EXIT\n");
+        printf("\nEnter your choice : ");
+        scanf("%d", &val);
+        printf("\n");
+
+        switch (val)
         {
-
         case 1:
-            insert();
+            insert(q);
             break;
-
         case 2:
-            del();
-
+            printf("deQ : %d\n", deQ(q));
             break;
-
         case 3:
-            display();
-
-            break;
-
-        case 4:
-            return 0;
-
+            display(q);
             break;
 
         default:
-            printf("Invalid choice...");
-
             break;
         }
-    }
 
-    while (choice = 4);
+    } while (val != 4);
 
-    getch();
-}
+    // inQ(q, 5);
+    // inQ(q, 6);
+    // inQ(q, 7);
+    // inQ(q, 8);
+    // inQ(q, 9);
+    // // inQ(q, 10);
 
-void insert()
+    // printf("deQ : %d\n", deQ(q));
+    // inQ(q, 10);
+    // inQ(q, 11);
+    // // inQ(q,12);
+    // printf("deQ : %d\n", deQ(q));
+    // printf("deQ : %d\n", deQ(q));
+    // printf("deQ : %d\n", deQ(q));
+    // printf("deQ : %d\n", deQ(q));
+    // printf("deQ : %d\n", deQ(q));
+    // printf("deQ : %d\n", deQ(q));
+    // printf("deQ : %d\n", deQ(q));
+    // printf("deQ : %d\n", deQ(q));
 
-{
-
-    if (rear == n - 1)
-    {
-
-        printf("Queue Overflow...");
-    }
-
-    else
-    {
-
-        if (front == -1)
-        {
-
-            front = 0;
-        }
-
-        printf("Enter a Value: ");
-        scanf("%d", &x);
-
-        rear++;
-
-        queue[rear] = x;
-    }
-}
-
-void display()
-{
-
-    if (front == -1)
-    {
-
-        printf("Queue is Empty");
-    }
-
-    else
-    {
-
-        printf("Your Data...\n");
-
-        for (i = front; i <= rear; i++)
-        {
-
-            printf("%d\n", queue[i]);
-        }
-    }
-}
-
-void del()
-{
-
-    if ((front == -1) || (front > rear))
-    {
-
-        printf("Queue Underflow...");
-
-        getch();
-
-        // exit(0);
-    }
-    else
-    {
-        printf("Deleted Element is %d", queue[front]);
-
-        front++;
-
-        // rear-;
-    }
+    return 0;
 }

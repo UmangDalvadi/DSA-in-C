@@ -19,7 +19,6 @@ void delete_before_value(struct node *);
 void delete_after_value(struct node *);
 int is_empty(struct node *);
 int search(struct node *);
-void handle(struct node *);
 void insert_at_value(struct node *);
 void deletell(struct node *);
 
@@ -30,8 +29,101 @@ int main()
     struct node *head = (struct node *)malloc(sizeof(struct node));
     head->data = 12;
     head->next = head;
-    handle(head);
+    int c;
+    do
+    {
+        printf("INSERT operations\n");
 
+        printf("\t1:Insert At Begin\n");
+        printf("\t2:Insert At End\n");
+        printf("\t3:Insert At Given Value\n");
+        printf("\t4:Insert Before Value\n");
+        printf("\t5:Insert After Given Value\n\n");
+
+        printf("DELETE operations\n");
+
+        printf("\t6:Delete At Begin\n");
+        printf("\t7:Delete At End\n");
+        printf("\t8:Delete At Value\n");
+        printf("\t9:Delete After Value\n");
+        printf("\t10:Delete Before Value\n\n");
+
+        printf("LINKEDLIST OPERATION\n");
+
+        printf("\t11:DISPLAY\n");
+        printf("\t12:Delete Linkedlist\n");
+        printf("\t13:Create Linkedlist\n");
+
+        printf("\t14:EXIT\n");
+        printf("\nEnter Number : ");
+        scanf("%d", &c);
+
+        switch (c)
+        {
+        case 1:
+            head = insert_at_first(head);
+            break;
+
+        case 2:
+            insert_at_end(head);
+            break;
+
+        case 3:
+            insert_at_value(head);
+            break;
+
+        case 4:
+            insert_before_value(head);
+            break;
+
+        case 5:
+            insert_after_value(head);
+            break;
+
+        case 6:
+            head = delete_at_begin(head);
+            break;
+
+        case 7:
+            delete_at_end(head);
+            break;
+
+        case 8:
+            delete_at_value(head);
+            break;
+
+        case 9:
+            delete_after_value(head);
+            break;
+
+        case 10:
+            delete_before_value(head);
+            break;
+
+        case 11:
+            display(head);
+            break;
+
+        case 12:
+            deletell(head);
+            break;
+
+        case 13:
+            search(head);
+            break;
+
+        case 14:
+            exit(1);
+            break;
+
+        default:
+            printf("Enter proper value\n");
+
+            break;
+        }
+        printf("\n--------------------------------------------\n");
+        sleep(2);
+    } while (c != 14);
     return 0;
 }
 
@@ -48,27 +140,27 @@ void display(struct node *head)
 struct node *insert_at_first(struct node *head)
 {
     int value;
-    struct node *tmp = (struct node *)malloc(sizeof(struct node));
+    struct node *temp = (struct node *)malloc(sizeof(struct node));
     struct node *head2 = head;
     printf("Enter the value to insert\n");
     scanf("%d", &value);
-    if (tmp == NULL)
+    if (temp == NULL)
     {
         printf("node not created\n");
     }
     else
     {
         printf("Created \n");
-        tmp->data = value;
-        tmp->next = head;
+        temp->data = value;
+        temp->next = head;
         while (head->next != head2)
         {
             head = head->next;
         }
-        head->next = tmp;
-        // return tmp;
-        head2 = tmp;
-        return tmp;
+        head->next = temp;
+        // return temp;
+        head2 = temp;
+        return temp;
     }
 }
 
@@ -104,10 +196,10 @@ void insert_after_value(struct node *head)
 
     if (head->data == match)
     {
-        struct node *tmp = (struct node *)malloc(sizeof(struct node));
-        tmp->data = value;
-        tmp->next = head->next;
-        head->next = tmp;
+        struct node *temp = (struct node *)malloc(sizeof(struct node));
+        temp->data = value;
+        temp->next = head->next;
+        head->next = temp;
         printf("Inserted\n");
     }
     else
@@ -151,19 +243,19 @@ void insert_before_value(struct node *head)
 
 struct node *delete_at_begin(struct node *head)
 {
-    struct node *vbj;
+    struct node *u;
     struct node *head2 = head;
-    vbj = head->next;
+    u = head->next;
     // struct node *head2 = head;
 
     while (head->next != head2)
     {
         head = head->next;
     }
-    head->next = vbj;
+    head->next = u;
     free(head2);
-    head = vbj;
-    return vbj;
+    head = u;
+    return u;
 }
 
 void delete_at_end(struct node *head)
@@ -324,107 +416,5 @@ void insert_at_value(struct node *head)
     else
     {
         printf("Value not found in list\n");
-    }
-}
-
-void handle(struct node *head)
-{
-    while (1)
-    {
-        int c;
-
-        printf("\nEnter the number to perform any operation\n\n");
-
-        printf("INSERT operations\n");
-
-        printf("\t1:Insert At Begin\n");
-        printf("\t2:Insert At End\n");
-        printf("\t3:Insert At Given Value\n");
-        printf("\t4:Insert Before Value\n");
-        printf("\t5:Insert After Given Value\n\n");
-
-        printf("DELETE operations\n");
-
-        printf("\t6:Delete At Begin\n");
-        printf("\t7:Delete At End\n");
-        printf("\t8:Delete At Value\n");
-        printf("\t9:Delete After Value\n");
-        printf("\t10:Delete Before Value\n\n");
-
-        printf("LINKEDLIST OP\n");
-
-        printf("\t11:DISPLAY\n");
-        printf("\t12:Delete Linkedlist\n");
-        printf("\t13:Create Linkedlist\n");
-
-        printf("\t14:EXIT\n");
-        printf("\nEnter Number : ");
-        scanf("%d", &c);
-
-        switch (c)
-        {
-        case 1:
-            head = insert_at_first(head);
-            break;
-
-        case 2:
-            insert_at_end(head);
-            break;
-
-        case 3:
-            insert_at_value(head);
-            break;
-
-        case 4:
-            insert_before_value(head);
-            break;
-
-        case 5:
-            insert_after_value(head);
-            break;
-
-        case 6:
-            head = delete_at_begin(head);
-            break;
-
-        case 7:
-            delete_at_end(head);
-            break;
-
-        case 8:
-            delete_at_value(head);
-            break;
-
-        case 9:
-            delete_after_value(head);
-            break;
-
-        case 10:
-            delete_before_value(head);
-            break;
-
-        case 11:
-            display(head);
-            break;
-
-        case 12:
-            deletell(head);
-            break;
-
-        case 13:
-            search(head);
-            break;
-
-        case 14:
-            exit(1);
-            break;
-
-        default:
-            printf("Enter proper value\n");
-
-            break;
-        }
-        printf("\n--------------------------------------------\n");
-        sleep(2);
     }
 }

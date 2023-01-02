@@ -137,6 +137,8 @@ char *infixtopostfix(char *exp)
 
 int main()
 {
+    printf("\nName : Umang Dalvadi\n");
+    printf("Enrollmrnt No. : 210210116020\n\n");
     char *exp;
 
     printf("\nPREFIX : %s\n", strrev(infixtopostfix(exp)));

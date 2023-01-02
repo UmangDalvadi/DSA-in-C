@@ -11,37 +11,37 @@ struct node
 struct node *insert_at_first(struct node *ptr)
 {
     int value;
-    struct node *tmp = (struct node *)malloc(sizeof(struct node));
+    struct node *temp = (struct node *)malloc(sizeof(struct node));
     printf("Enter the value to insert\n");
     scanf("%d", &value);
-    if (tmp == NULL)
+    if (temp == NULL)
     {
-        printf("node not created\n");
+        printf("node is not created\n");
     }
     else
     {
-        printf("Created \n");
-        tmp->data = value;
-        tmp->next = ptr;
-        ptr = tmp;
-        return tmp;
+        printf("NodeCreated \n");
+        temp->data = value;
+        temp->next = ptr;
+        ptr = temp;
+        return temp;
     }
 }
 
 struct node *insert_at_end(struct node *ptr)
 {
     int value;
-    struct node *tmp = (struct node *)malloc(sizeof(struct node));
+    struct node *temp = (struct node *)malloc(sizeof(struct node));
 
     printf("Enter the value to insert at end\n");
     scanf("%d", &value);
-    tmp->data = value;
+    temp->data = value;
     while (ptr->next != NULL)
     {
         ptr = ptr->next;
     }
-    ptr->next = tmp;
-    tmp->next = NULL;
+    ptr->next = temp;
+    temp->next = NULL;
     printf("Node Inserted \n");
 }
 
@@ -49,7 +49,6 @@ void display(struct node *ptr)
 {
     while (ptr != NULL)
     {
-        // sleep(2);
         printf("Element : %d\n", ptr->data);
         ptr = ptr->next;
     }
@@ -69,27 +68,27 @@ void insert_after_value(struct node *head)
         {
             if (head->next == NULL)
             {
-                char vbj;
-                printf("This value is found last of the list \n\tAre you insert at end (y\\n)\n");
-                scanf(" %c", &vbj);
-                if (vbj == 'y' || vbj == 'Y')
+                char u;
+                printf("This value is found last of the list \nAre you insert at end (y\\n)\n");
+                scanf(" %c", &u);
+                if (u == 'y' || u == 'Y')
                 {
                     insert_at_end(head2);
                 }
-                else if (vbj == 'n' || vbj == 'N')
+                else if (u == 'n' || u == 'N')
                 {
                     return;
                 }
                 else
                 {
-                    printf("Choose proper value\n");
+                    printf("Choose valid value\n");
                 }
                 flag = 1;
             }
             else
             {
 
-                printf("Enter the value  to add  after\n");
+                printf("Enter the value,  to add  after node\n");
                 scanf("%d", &val);
                 flag = 1;
                 temp->data = val;
@@ -118,20 +117,20 @@ struct node *insert_before_value(struct node *head)
     struct node *head2 = head;
     printf("Enter the node value\n");
     scanf("%d", &match);
-    char vkb;
+    char u;
     if (head->data == match)
     {
         flag = 1;
         printf("This value found on head  continue to add value before head to enter \n");
-        scanf(" %c", &vkb);
+        scanf(" %c", &u);
         fflush(stdout);
         fflush(stdin);
-        if (vkb == 'y' || vkb == 'Y')
+        if (u == 'y' || u == 'Y')
         {
             head = insert_at_first(head);
             return head2;
         }
-        else if (vkb == 'n' || vkb == 'N')
+        else if (u == 'n' || u == 'N')
         {
             return head2;
         }
@@ -186,7 +185,6 @@ struct node *delete_at_end(struct node *ptr)
     {
         p = p->next;
         q = q->next;
-        //  tmp = tmp->next;
     }
 
     p->next = NULL;
@@ -235,7 +233,7 @@ void delete_after_value(struct node *ptr)
     p = ptr;
     q = ptr->next;
     int flag = 0, val;
-    printf("Enter the value that delete that value after\n");
+    printf("Enter the value, to DELETE after : ");
     scanf("%d", &val);
     while (q != NULL)
     {
@@ -265,7 +263,7 @@ void delete_before_value(struct node *ptr)
     p = ptr;
     q = ptr->next;
     int flag = 0, val;
-    printf("Enter the value that delete that value before\n");
+    printf("Enter the value, to DELETE before : ");
     scanf("%d", &val);
     while (q != NULL)
     {
@@ -299,7 +297,7 @@ void delete_at_value(struct node *ptr)
     p = ptr;
     q = ptr->next;
     int flag = 0, val;
-    printf("Enter the value that delete that value before\n");
+    printf("Enter the value, to DELETE at value : ");
     scanf("%d", &val);
     while (q != NULL)
     {
@@ -377,33 +375,31 @@ int main()
     while (1)
     {
 
-        printf("Enter the number to perform any operation\n");
-
         printf("\nINSERT operations\n");
 
-        printf("\t1:Insert At Begin\n");
-        printf("\t2:Insert At End\n");
-        printf("\t3:Insert At Given Value\n");
-        printf("\t4:Insert Before Value\n");
-        printf("\t5:Insert After Given Value\n\n");
+        printf("\t1: Insert At Begin\n");
+        printf("\t2: Insert At End\n");
+        printf("\t3: Insert At Given Value\n");
+        printf("\t4: Insert Before Value\n");
+        printf("\t5: Insert After Given Value\n\n");
 
         printf("DELETE operations\n");
 
-        printf("\t6:Delete At Begin\n");
-        printf("\t7:Delete At End\n");
-        printf("\t8:Delete At Value\n");
-        printf("\t9:Delete After Value\n");
-        printf("\t10:Delete Before Value\n\n");
+        printf("\t6: Delete At Begin\n");
+        printf("\t7: Delete At End\n");
+        printf("\t8: Delete At Value\n");
+        printf("\t9: Delete After Value\n");
+        printf("\t10: Delete Before Value\n\n");
 
-        printf("LINKEDLIST OP\n");
+        printf("LINKEDLIST OPERATIONS\n");
 
-        printf("\t11:DISPLAY\n");
-        printf("\t12:Delete Linkedlist\n");
-        printf("\t13:Create Linkedlist\n");
+        printf("\t11: DISPLAY\n");
+        printf("\t12: Delete Linkedlist\n");
+        printf("\t13: Create Linkedlist\n");
 
-        printf("\t14:Sort\n");
-        printf("\t15:EXIT\n");
-        printf("_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.\n");
+        printf("\t14: Sort\n");
+        printf("\t15: EXIT\n");
+        printf("=================================================\n");
 
         printf("\nEnter the choise : ");
 

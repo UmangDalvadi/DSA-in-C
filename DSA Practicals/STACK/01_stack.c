@@ -118,6 +118,8 @@ void display(struct node *top)
 
 int main()
 {
+    printf("\nName : Umang Dalvadi\n");
+    printf("Enrollmrnt No. : 210210116020\n\n");
     printf("\n-------------------------create a stack (PUSH Elements)-------------------------\n");
     struct node *top = NULL;
     int num;

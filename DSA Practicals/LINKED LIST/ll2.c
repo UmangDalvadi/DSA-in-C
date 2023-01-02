@@ -1,7 +1,6 @@
-// doubly linklist
+
 #include <stdio.h>
 #include <stdlib.h>
-
 struct node
 {
     int data;
@@ -13,15 +12,14 @@ struct node *insert_at_first(struct node *);
 void insert_after_value(struct node *);
 void insert_before_value(struct node *);
 void insert_at_end(struct node *);
-void display(struct node *);
 struct node *delete_at_begin(struct node *);
 void delete_at_end(struct node *);
 void delete_at_value(struct node *);
 void delete_before_value(struct node *);
 void delete_after_value(struct node *);
 int is_empty(struct node *);
+void display(struct node *);
 int search(struct node *);
-void handle(struct node *);
 void change_value(struct node *);
 void insert_at_value(struct node *head);
 
@@ -32,7 +30,6 @@ int main()
     printf("Enrollmrnt No. : 210210116020\n\n");
     struct node *head = (struct node *)malloc(sizeof(struct node));
     struct node *second = (struct node *)malloc(sizeof(struct node));
-    struct node *last = (struct node *)malloc(sizeof(struct node));
 
     head->prev = NULL;
     head->data = 20;
@@ -43,8 +40,97 @@ int main()
     second->next = NULL;
 
     int c, flag = 0;
-    handle(head);
+    do
+    {
+        int c, flag;
 
+        printf("INSERT operations\n");
+
+        printf("\t1:Insert At Begin\n");
+        printf("\t2:Insert At End\n");
+        printf("\t3:Insert At Given Value\n");
+        printf("\t4:Insert Before Value\n");
+        printf("\t5:Insert After Given Value\n\n");
+
+        printf("DELETE operations\n");
+
+        printf("\t6:Delete At Begin\n");
+        printf("\t7:Delete At End\n");
+        printf("\t8:Delete At Value\n");
+        printf("\t9:Delete After Value\n");
+        printf("\t10:Delete Before Value\n\n");
+
+        printf("LINKEDLIST OPERATION\n");
+
+        printf("\t11:DISPLAY\n");
+        printf("\t12:Delete Linkedlist\n");
+        printf("\t13:Create Linkedlist\n");
+
+        printf("\t14:EXIT\n");
+
+        printf("\nEnter Number : ");
+        scanf("%d", &c);
+
+        switch (c)
+        {
+        case 1:
+            head = insert_at_first(head);
+            break;
+        case 2:
+            insert_at_end(head);
+            break;
+        case 3:
+            insert_at_value(head);
+            break;
+        case 4:
+            insert_before_value(head);
+            break;
+        case 5:
+            insert_after_value(head);
+            break;
+        case 6:
+            head = delete_at_begin(head);
+            break;
+        case 7:
+
+            delete_at_end(head);
+            break;
+        case 8:
+            delete_at_value(head);
+            break;
+        case 9:
+            delete_after_value(head);
+            break;
+        case 10:
+            delete_before_value(head);
+            break;
+        case 11:
+            if (flag == 1)
+            {
+                printf("You deleted linkedlist\n");
+            }
+            else
+            {
+                display(head);
+            }
+
+            break;
+        case 12:
+            // deletell(head);
+            flag = 1;
+            break;
+        case 13:
+            search(head);
+            break;
+        case 14:
+            exit(1);
+            break;
+        default:
+            printf("Enter proper value\n");
+            break;
+        }
+        printf("-------------------------------------------\n");
+    } while (c != 14);
     return 0;
 }
 
@@ -56,14 +142,13 @@ void display(struct node *ptr)
         ptr = ptr->next;
     }
 }
-
 struct node *insert_at_first(struct node *head)
 {
     int val;
     printf("Enter the value ");
     scanf("%d", &val);
     struct node *temp = (struct node *)malloc(sizeof(struct node));
-    // struct node *head2=head;
+
     temp->data = val;
     temp->next = head;
     head->prev = temp;
@@ -327,100 +412,5 @@ int search(struct node *head)
     else
     {
         printf("Value found on index of %d\n", f + 2);
-    }
-}
-
-void handle(struct node *head)
-{
-    while (1)
-    {
-        int c, flag;
-        printf("\nEnter the number to perform any operation\n\n");
-        printf("INSERT operations\n");
-
-        printf("\t1:Insert At Begin\n");
-        printf("\t2:Insert At End\n");
-        printf("\t3:Insert At Given Value\n");
-        printf("\t4:Insert Before Value\n");
-        printf("\t5:Insert After Given Value\n\n");
-
-        printf("DELETE operations\n");
-
-        printf("\t6:Delete At Begin\n");
-        printf("\t7:Delete At End\n");
-        printf("\t8:Delete At Value\n");
-        printf("\t9:Delete After Value\n");
-        printf("\t10:Delete Before Value\n\n");
-
-        printf("LINKEDLIST OP\n");
-
-        printf("\t11:DISPLAY\n");
-        printf("\t12:Delete Linkedlist\n");
-        printf("\t13:Create Linkedlist\n");
-
-        printf("\t14:EXIT\n");
-
-        printf("\nEnter Number : ");
-        scanf("%d", &c);
-
-        switch (c)
-        {
-        case 1:
-            head = insert_at_first(head);
-            break;
-        case 2:
-            insert_at_end(head);
-            break;
-        case 3:
-            insert_at_value(head);
-            break;
-        case 4:
-            insert_before_value(head);
-            break;
-        case 5:
-            insert_after_value(head);
-            break;
-        case 6:
-            head = delete_at_begin(head);
-            break;
-        case 7:
-
-            delete_at_end(head);
-            break;
-        case 8:
-            delete_at_value(head);
-            break;
-        case 9:
-            delete_after_value(head);
-            break;
-        case 10:
-            delete_before_value(head);
-            break;
-        case 11:
-            if (flag == 1)
-            {
-                printf("You deleted linkedlist\n");
-            }
-            else
-            {
-                display(head);
-            }
-
-            break;
-        case 12:
-            // deletell(head);
-            flag = 1;
-            break;
-        case 13:
-            search(head);
-            break;
-        case 14:
-            exit(1);
-            break;
-        default:
-            printf("Enter proper value\n");
-            break;
-        }
-        printf("-------------------------------------------\n");
     }
 }

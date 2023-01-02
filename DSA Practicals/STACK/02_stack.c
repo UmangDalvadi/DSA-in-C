@@ -28,6 +28,8 @@ void pop(struct stack *n, char strg[])
 
 int main()
 {
+    printf("\nName : Umang Dalvadi\n");
+    printf("Enrollmrnt No. : 210210116020\n\n");
     printf("\nEnter String : ");
     char strg[50];
     // scanf("%s", strg);

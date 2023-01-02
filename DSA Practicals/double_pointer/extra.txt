@@ -1,0 +1,13 @@
+void alpha(char **city_names, int n)
+// {
+//     int i;
+//     printf("First letter of alphabatic string:\n\n");
+//     for (i = 0; i < n; i++)
+//     {
+//         char *str = city_names[i];
+//         printf("%c\n", str[0]);
+//     }
+// }// 
+
+
+ // alpha(city_names, n);
