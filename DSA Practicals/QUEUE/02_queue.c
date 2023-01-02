@@ -4,7 +4,7 @@
 
 struct queue{
     
-}
+};
 
 int main()
 {
