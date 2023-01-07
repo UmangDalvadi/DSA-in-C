@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "CLONE.C": "cpp"
-    }
+    },
+    "sqltools.connections": []
 }
