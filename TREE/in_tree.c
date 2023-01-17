@@ -64,6 +64,7 @@ int main()
     struct node *n5 = node(5);
     struct node *n6 = node(6);
     struct node *n7 = node(7);
+    
     n1->left = n2;
     n1->right = n3;
     n2->left = n4;
