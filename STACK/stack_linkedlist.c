@@ -37,7 +37,7 @@ struct node *push(struct node *top, int x)
     return top;
 }
 
-int pull(struct node *top)
+struct node *pull(struct node *top)
 {
     if (isempty(top))
     {
@@ -48,7 +48,7 @@ int pull(struct node *top)
     n = top;
     top = top->next;
 
-    return n->data;
+    return n;
 }
 void travel(struct node *ptr)
 {
@@ -75,13 +75,16 @@ int main()
 
     travel(top);
 
-    int n = pull(top);
+    struct node *n = pull(top);
 
-    printf("pulled:%d", n);
+    printf("pulled:%d", n->data);
+    top = top->next;
+
     // free(n);
 
     // printf("pulled : ", pull(top));
     // printf("pulled : ", pull(top));
+    printf("\n");
 
     travel(top);
 

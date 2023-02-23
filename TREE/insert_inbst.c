@@ -167,11 +167,11 @@ int main()
     // postorder(n1);
     // printf("%d\n", isbst(n7));
     // printf("%d\n", search(n7, 3));
-    // isbst(n7);
-    inorder(n7);
-    printf("\n");
-    insert(n7, 8);
+    isbst(n7);
+    // inorder(n7);
     // printf("\n");
-    inorder(n7);
+    // insert(n7, 8);
+    // printf("\n");
+    // inorder(n7);
     return 0;
 }

@@ -16,7 +16,7 @@ void travel(struct node *ptr)
         printf("%d\n", ptr->data);
         ptr = ptr->next;
 
-    } while (ptr->prev != NULL);
+    } while (1);
    
 }
 

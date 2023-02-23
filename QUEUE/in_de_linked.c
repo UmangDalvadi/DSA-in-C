@@ -66,7 +66,8 @@ void inqf(int val)
     struct node *temp = (struct node *)malloc(sizeof(struct node));
     temp->data = val;
     temp->next = f;
-    temp = f;
+    // temp = f;
+    f = temp;
 }
 
 int main()

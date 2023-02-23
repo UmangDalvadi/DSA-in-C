@@ -54,7 +54,7 @@ void insert(struct node *ptr, struct node *q, int n)
         // }
     }
 }
-struct node* dlt(struct node *ptr, int val)
+struct node *dlt(struct node *ptr, int val)
 {
     if (val == 0)
     {
@@ -87,7 +87,7 @@ int main()
 
     travel(f1);
 
-    f1=dlt(f1, 0);
+    f1 = dlt(f1, 0);
 
     // char ch;
     // do
